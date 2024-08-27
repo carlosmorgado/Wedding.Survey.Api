@@ -1,0 +1,6 @@
+@Wedding.Survey.Web_HostAddress = http://localhost:5296
+
+GET {{Wedding.Survey.Web_HostAddress}}/survey-answers/
+Accept: application/json
+
+###
