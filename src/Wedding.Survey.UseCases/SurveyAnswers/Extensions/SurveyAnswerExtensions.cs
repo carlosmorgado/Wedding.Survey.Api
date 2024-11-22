@@ -20,12 +20,12 @@ internal static class SurveyAnswerExtensions
             IsAdult = info.IsAdult,
             IsAgeFourToNine = info.IsAgeFourToNine,
             IsAgeZeroToThree = info.IsAgeZeroToThree,
-            Restrictions = info.Restrictions,
+            Restrictions = info.Restrictions.ToList(),
         };
     }
 
-    public static IEnumerable<GuestInformation> ToDatabaseObject(this IReadOnlyCollection<GuestInformationDto> infos)
+    public static ICollection<GuestInformation> ToDatabaseObject(this IReadOnlyCollection<GuestInformationDto> infos)
     {
-        return infos.Select(ToDatabaseObject);
+        return infos.Select(ToDatabaseObject).ToList();
     }
 }

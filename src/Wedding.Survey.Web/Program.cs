@@ -8,7 +8,6 @@ using Wedding.Survey.UseCases.SurveyAnswers.ListAll;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
 builder.AddInfrastructure();
 
 var services = builder.Services;
@@ -20,8 +19,6 @@ services
 	.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetAssembly(typeof(ListAllSurveyAnswersQuery))!));
 
 var app = builder.Build();
-
-app.MapDefaultEndpoints();
 
 app.UseFastEndpoints(config =>
 {
