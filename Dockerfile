@@ -3,8 +3,6 @@ WORKDIR /app
 
 COPY . ./
 
-RUN dotnet nuget update source CarlosMorgado --username carlosmorgado --password "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"
-
 RUN dotnet workload restore
 
 RUN dotnet publish -c Release -o out
