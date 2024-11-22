@@ -9,5 +9,5 @@ public class GuestInformation
 
     public required bool IsAdult { get; set; }
 
-    public IEnumerable<DietRestrictions> Restrictions { get; set; } = Enumerable.Empty<DietRestrictions>();
+    public ICollection<DietRestrictions> Restrictions { get; set; } = new List<DietRestrictions>();
 }

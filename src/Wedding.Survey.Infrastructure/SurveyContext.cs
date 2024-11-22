@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using Wedding.Survey.Core;
 using Wedding.Survey.Core.SurveyAnswers;
 using Wedding.Survey.Infrastructure.EntityConfiguration;
@@ -6,7 +7,12 @@ using Wedding.Survey.Infrastructure.EntityConfiguration;
 namespace Wedding.Survey.Infrastructure;
 public class SurveyContext : DbContext, ISurveyContext
 {
-	public DbSet<SurveyAnswer> Answers { get; set; }
+    public SurveyContext(DbContextOptions<SurveyContext> options)
+        : base(options)
+    {
+    }
+
+    public DbSet<SurveyAnswer> Answers { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
