@@ -31,4 +31,17 @@ public class SurveyContext : DbContext, ISurveyContext
 
 		return base.SaveChanges();
 	}
+
+	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+	{
+		foreach (var tradeEntry in this.ChangeTracker.Entries<SurveyAnswer>())
+		{
+			if (tradeEntry.State == EntityState.Added)
+			{
+				tradeEntry.Entity.CreationDate = DateTimeOffset.UtcNow;
+			}
+		}
+
+		return await base.SaveChangesAsync(cancellationToken);
+	}
 }
