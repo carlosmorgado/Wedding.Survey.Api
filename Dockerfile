@@ -12,6 +12,5 @@ WORKDIR /app
 COPY --from=build /app/out .
 
 ENV ASPNETCORE_ENVIRONMENT=Production
-# ENV survey-answers "mongodb+srv://carlos:PZVLpOL3mwrcyCJZ@weddingsurveyanswers.tg9of.mongodb.net/?retryWrites=true&w=majority&appName=weddingSurveyAnswers"
 
 ENTRYPOINT ["dotnet", "Wedding.Survey.Web.dll"]

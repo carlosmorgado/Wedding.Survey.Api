@@ -7,7 +7,7 @@ public static class HostApplicationBuilderExtensions
 {
 	public static void AddInfrastructure(this IHostApplicationBuilder builder)
 	{
-		builder.AddMongoDbClient("survey-answers");
+		builder.AddMongoDbClient("MONGO_URL");
 	}
 
     public static void AddMongoDbClient(
@@ -19,8 +19,7 @@ public static class HostApplicationBuilderExtensions
 
         if (Environment.GetEnvironmentVariable(connectionName) is not string connectionString)
         {
-            connectionString = "mongodb+srv://carlos:PZVLpOL3mwrcyCJZ@weddingsurveyanswers.tg9of.mongodb.net/?retryWrites=true&w=majority&appName=weddingSurveyAnswers";
-            //throw new InvalidOperationException("No connection string found for non Development run.");
+            throw new InvalidOperationException("No connection string found for non Development run.");
         }
 
         builder.Services.AddSingleton<IMongoClient>(new MongoClient(connectionString));
