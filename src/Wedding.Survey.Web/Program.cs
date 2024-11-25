@@ -14,11 +14,23 @@ var services = builder.Services;
 
 services.AddInfrastructure();
 
+services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins", builder =>
+    {
+        builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+    });
+});
+
 services.AddFastEndpoints();
 services
 	.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetAssembly(typeof(ListAllSurveyAnswersQuery))!));
 
 var app = builder.Build();
+
+app.UseCors("AllowAllOrigins");
 
 app.UseFastEndpoints(config =>
 {

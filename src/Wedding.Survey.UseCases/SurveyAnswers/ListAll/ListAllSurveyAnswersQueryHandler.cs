@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Wedding.Survey.Core;
+using Wedding.Survey.UseCases.SurveyAnswers.Extensions;
 
 namespace Wedding.Survey.UseCases.SurveyAnswers.ListAll;
 public class ListAllSurveyAnswersQueryHandler(ISurveyContext surveyContext)
@@ -12,6 +13,13 @@ public class ListAllSurveyAnswersQueryHandler(ISurveyContext surveyContext)
         ListAllSurveyAnswersQuery request,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var answers = this
+            .surveyContext
+            .Answers
+            .ToList()
+            .Select(answer => answer.ToDto())
+            .ToList();
+
+        return answers;
     }
 }
