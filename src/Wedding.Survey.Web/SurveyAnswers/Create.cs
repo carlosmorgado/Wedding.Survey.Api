@@ -13,6 +13,7 @@ public class Create(IMediator mediator)
     {
         this.Post("/survey-answers");
         this.AllowAnonymous();
+        this.Options(b => b.RequireCors(x => x.AllowAnyOrigin()));
     }
 
     public override async Task HandleAsync(
